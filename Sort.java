@@ -116,7 +116,7 @@ abstract class quick_sort_utils extends sort_input {
             int pivot_v = array[last_index];
             int i       = start_index - 1;
 
-            pivot_i = last_index;
+            int pivot_i = last_index;
             for (int j = start_index; j < last_index; j++) {
                 if (array[j] <= pivot_v) {
                     i++;
@@ -184,7 +184,7 @@ class quick_sort_iterative extends quick_sort_utils {
     }
 }
 
-
+/*
 abstract class heap_sort_utils extends sort_input {
     heap_sort_utils(int[] array) {
         super(array);
@@ -198,7 +198,7 @@ abstract class heap_sort_utils extends sort_input {
     }
 
 }
-
+*/
 
 class sort {
     public static void main(String[] args) {
