@@ -113,8 +113,6 @@ abstract class quick_sort_utils extends sort_input {
     }
 
     public int qsort_partition(int start_index, int last_index) {
-        int pivot_i = -2;
-        if (start_index < last_index) {
             int pivot_v = array[last_index];
             int i       = start_index - 1;
 
@@ -128,8 +126,7 @@ abstract class quick_sort_utils extends sort_input {
 
             swap(i+1, pivot_i);
             pivot_i = i + 1;
-        }
-        return pivot_i;
+            return pivot_i;
     }
 
     public void qsort_split(int start_index, int last_index) {
