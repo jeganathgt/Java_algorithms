@@ -27,12 +27,18 @@ class two_sum {
     }
 
     public static void main(String[] args) {
-        for (int i = 0; i < array.length; i++) {
-            for (int j = i+1; j < array.length; j++) {
+        Arrays.sort(array);
+        int j = 0;
+        int mid = (array.length-1)/2;;
+
+        for (j = array.length-1; j > mid; j--) {
+            for (int i = 0; i <= mid; i++) {
                 if (i != j) {
                     if ( (array[i] + array[j]) == target ) {
-                        System.out.println("(" + i + "," + j + ")");
-                    }
+                        System.out.println("(" + array[i] + "," + array[j] + ")");
+                    } else if ((array[i] + array[j]) > target) {
+                        break;
+                    } 
                 }
             }
         }
