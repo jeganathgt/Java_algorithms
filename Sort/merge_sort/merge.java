@@ -1,71 +1,65 @@
 import java.util.*;
-class Solution {
-    void merge(int[] nums, int first_array, int second_array, int end){
-        int i = first_array;
-        int j = second_array;
 
-        int i_end = second_array - 1;
+class solution {
+    static void merge(int[] array, int firstArrayStart, int secondArrayStart, int end) {
+        int i     = firstArrayStart;
+        int i_end = secondArrayStart - 1;
+        int j     = secondArrayStart;
         int j_end = end;
+        int k     = 0;
 
-        int k = 0;
-        int size = end - first_array + 1;
-        
-        int[] temp = new int[size];
+        int[] temp = new int[(end - firstArrayStart + 1)];
 
-        System.out.println("first :" + first_array + "Second : " + second_array + "end:" + end);
-        while(i <= i_end && j <= j_end) {
-            if (nums[i] < nums[j]) {
-                temp[k++] = nums[i++];
+        while (i <= i_end && j <= j_end) {
+            if (array[i] < array[j]) {
+                temp[k++] = array[i++];
             } else {
-                temp[k++] = nums[j++];
+                temp[k++] = array[j++];
             }
         }
-        
-        while(i <= i_end) {
-            temp[k++] = nums[i++];
-        }
-        
-        while(j <= j_end) {
-            temp[k++] = nums[j++];
+
+        while (i <= i_end) {
+            temp[k++] = array[i++];
         }
 
-        System.arraycopy(temp, 0, nums, first_array, size);
-        /*
-        i = first_array;
+        while (j <= j_end) {
+            temp[k++] = array[j++];
+        }
+
         k = 0;
-        while (i <= end) {
-            nums[i++] = temp[k++];
+        i = firstArrayStart;
+        for (k = 0; k < (end - firstArrayStart + 1); k++) {
+            array[i++] = temp[k];
         }
-        */
-        System.out.println(Arrays.toString(temp));
-        System.out.println("nums : " + Arrays.toString(nums));
+
     }
-    
-    void merge_sort(int[] nums, int start, int end) {
-        if (start < end) {
-            int mid = (end + start)/2;
-            merge_sort(nums, start, mid);
-            merge_sort(nums, mid+1, end);
-            merge(nums, start, mid+1, end);
+
+    static void merge_sort(int[] array, int start, int end) {
+        if (start<end) {
+            int mid = (end - start)/2 + start;
+            merge_sort(array, start, mid);
+            merge_sort(array, mid + 1, end);
+
+            merge(array, start, mid + 1, end);
         }
-    }
-    
-    public int[] sortArray(int[] nums) {
-        merge_sort(nums, 0, nums.length-1);
-        return nums;
     }
 
     public static void main(String[] args) {
-        Solution soln = new Solution();
 
         Scanner scan = new Scanner(System.in);
-        System.out.println("Enter the len:");
+
+        System.out.println("Enter the length of array:");
         int len = scan.nextInt();
-        int[] nums = new int[len];
+
+        int[] array = new int[len];
         System.out.println("Enter the array:");
-        for (int i =0; i < len; i++) {
-            nums[i] = scan.nextInt();
+
+        for (int i = 0; i< len; i++) {
+            array[i] = scan.nextInt();
         }
-        System.out.println("Result :" + Arrays.toString(soln.sortArray(nums)));
+
+        merge_sort(array, 0, len-1);
+
+        System.out.println(Arrays.toString(array));
     }
 }
